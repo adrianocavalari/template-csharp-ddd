@@ -8,14 +8,14 @@ namespace Template.Data.Context
     {
         protected override void Seed(TemplateContext context)
         {
-            new List<User>
+            context.User.AddRange(new List<User>
             {
-                new User() { Name = "Adriano" }
-            };
+                new User() { Id = 1, Name = "Adriano" }
+            });
 
             context.SaveChanges();
 
-            base.Seed(context);
+            //base.Seed(context);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Template.Mvc.App_Start;
 using Template.Mvc.AutoMapper;
 
 namespace Template.Mvc
@@ -15,6 +16,9 @@ namespace Template.Mvc
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperConfig.RegisterMapping();
+
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
         }
     }
 }

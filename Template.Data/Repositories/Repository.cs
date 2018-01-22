@@ -9,12 +9,14 @@ using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity>
+    public class Repository<TEntity> : IUserRepository<TEntity>
         where TEntity : class
     {
         //private readonly IDbContext _dbContext;
         //private readonly IDbSet<TEntity> _dbSet = new TemplateContext();
         private readonly TemplateContext _dbSet = new TemplateContext();
+
+
 
         //public Repository()
         //{

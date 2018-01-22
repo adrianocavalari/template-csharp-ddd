@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Template.Domain.Entities;
+﻿using System.Collections.Generic;
 using Template.Domain.Interfaces.Repository;
 using Template.Domain.Interfaces.Services;
 
@@ -12,9 +7,9 @@ namespace Template.Domain.Services
     public class Service<TEntity> : IService<TEntity>
         where TEntity : class
     {
-        private readonly IRepository<TEntity> _respository;
+        private readonly IUserRepository<TEntity> _respository;
 
-        public Service(IRepository<TEntity> respository)
+        public Service(IUserRepository<TEntity> respository)
         {
             _respository = respository;
         }

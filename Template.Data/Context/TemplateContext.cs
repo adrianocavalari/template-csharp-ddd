@@ -7,17 +7,15 @@ namespace Template.Data.Context
 {
     public class TemplateContext : DbContext
     {
-        public TemplateContext() :
-            base("TemplateEntity")
-        {
-
-        }
-
         static TemplateContext()
         {
             Database.SetInitializer(new ContextInitializer());
         }
 
+        public TemplateContext() :
+            base("TemplateEntity")
+        {
+        }
 
         public DbSet<User> User { get; set; }
 

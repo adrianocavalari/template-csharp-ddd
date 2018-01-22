@@ -6,7 +6,7 @@ namespace Template.Application
 {
     public class UserAppService : AppService<User>, IUserAppService
     {
-        public UserAppService(IUserAppService service) 
+        public UserAppService(IUserService service) 
             : base(service)
         {
         }

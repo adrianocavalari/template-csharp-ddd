@@ -2,7 +2,7 @@
 
 namespace Template.Domain.Interfaces.Repository
 {
-    public interface IUserRepository: IRepository<User>
+    public interface IUserRepository: IUserRepository<User>
     {
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Template.Application.Interface;
 using Template.Domain.Interfaces.Services;
 
@@ -11,9 +7,9 @@ namespace Template.Application
     public class AppService<TEntity> : IAppService<TEntity>
         where TEntity : class
     {
-        private readonly IAppService<TEntity> _service;
+        private readonly IService<TEntity> _service;
 
-        public AppService(IAppService<TEntity> service)
+        public AppService(IService<TEntity> service)
         {
             _service = service;
         }
