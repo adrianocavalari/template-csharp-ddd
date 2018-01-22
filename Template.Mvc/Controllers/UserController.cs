@@ -1,13 +1,9 @@
 ﻿using System.Web.Mvc;
-using Template.Data.Repositories;
-using Template.Domain.Interfaces.Repository;
 using AutoMapper;
-using System.Collections;
 using Template.Domain.Entities;
 using System.Collections.Generic;
 using Template.Mvc.ViewModels;
 using Template.Application.Interface;
-using Template.Application;
 
 namespace Template.Mvc.Controllers
 {

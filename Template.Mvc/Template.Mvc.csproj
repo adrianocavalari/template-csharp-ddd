@@ -49,6 +49,12 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -223,10 +229,6 @@
     <ProjectReference Include="..\Template.Application\Template.Application.csproj">
       <Project>{29694D2F-6B07-4A66-8C32-6176B42CC83A}</Project>
       <Name>Template.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Template.Data\Template.Data.csproj">
-      <Project>{e6120ead-e037-465c-ae22-87080d195ce1}</Project>
-      <Name>Template.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Template.Domain\Template.Domain.csproj">
       <Project>{b61dd930-de09-494b-b965-3aee3b8f88be}</Project>
