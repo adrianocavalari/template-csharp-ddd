@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Template.Mvc.App_Start;
 using Template.Mvc.AutoMapper;
+using static Template.IoC.NativeInjectorBootStrapper;
 
 namespace Template.Mvc
 {
@@ -18,7 +18,6 @@ namespace Template.Mvc
             AutoMapperConfig.RegisterMapping();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
-
         }
     }
 }

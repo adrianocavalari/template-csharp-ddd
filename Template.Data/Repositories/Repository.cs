@@ -9,13 +9,17 @@ using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
 {
-    public class Repository<TEntity> : IUserRepository<TEntity>
+    public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        //private readonly IDbContext _dbContext;
-        //private readonly IDbSet<TEntity> _dbSet = new TemplateContext();
-        private readonly TemplateContext _dbSet = new TemplateContext();
+        internal DbContext _context;
+        internal DbSet<TEntity> _dbSet;
 
+        public Repository(DbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<TEntity>();
+        }
 
 
         //public Repository()
@@ -29,18 +33,18 @@ namespace Template.Data.Repositories
 
         public void Add(TEntity entity)
         {
-            _dbSet.Set<TEntity>().Add(entity);
-            _dbSet.SaveChanges();
+            _dbSet.Add(entity);
+            _context.SaveChanges();
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-           return _dbSet.Set<TEntity>().ToList();
+           return _dbSet.ToList();
         }
 
         public TEntity GetById(int id)
         {
-            return _dbSet.Set<TEntity>().Find(id);
+            return _dbSet.Find(id);
         }
 
         public void Remove(TEntity entity)
@@ -50,8 +54,8 @@ namespace Template.Data.Repositories
 
         public void Update(TEntity entity)
         {
-            _dbSet.Entry(entity).State = EntityState.Modified;
-            _dbSet.SaveChanges();
+            _dbSet.Attach(entity);
+            _context.SaveChanges();
         }
 
         public void Dispose()

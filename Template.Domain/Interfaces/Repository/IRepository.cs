@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Template.Domain.Interfaces.Repository
 {
-    public interface IUserRepository<TEntity> : IDisposable
+    public interface IRepository<TEntity> : IDisposable
         where TEntity : class
     {
         void Add(TEntity entity);

@@ -7,9 +7,9 @@ namespace Template.Domain.Services
     public class Service<TEntity> : IService<TEntity>
         where TEntity : class
     {
-        private readonly IUserRepository<TEntity> _respository;
+        private readonly IRepository<TEntity> _respository;
 
-        public Service(IUserRepository<TEntity> respository)
+        public Service(IRepository<TEntity> respository)
         {
             _respository = respository;
         }
