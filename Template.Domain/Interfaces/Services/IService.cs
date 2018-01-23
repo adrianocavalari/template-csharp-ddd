@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Template.Domain.Interfaces.Services
@@ -10,9 +9,17 @@ namespace Template.Domain.Interfaces.Services
         where TEntity : class
     {
         void Add(TEntity entity);
-        TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
         void Update(TEntity entity);
         void Remove(TEntity entity);
+        TEntity GetById(int id);
+        IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> where);
+        IEnumerable<TEntity> GetAll();
+
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
+        Task<TEntity> GetByIdAsync(int id);
+        Task<IEnumerable<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> where);
+        Task<IEnumerable<TEntity>> GetAllAsync();
     }
 }

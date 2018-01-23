@@ -4,5 +4,6 @@ namespace Template.Application.Interface
 {
     public interface IUserAppService : IAppService<User>
     {
+        void GetByName(string name);
     }
 }

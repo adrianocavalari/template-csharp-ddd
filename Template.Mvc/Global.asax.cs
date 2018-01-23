@@ -2,7 +2,7 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using Template.Mvc.AutoMapper;
-using static Template.IoC.NativeInjectorBootStrapper;
+using static Template.IoC.NinjectInjectorBootStrapper;
 
 namespace Template.Mvc
 {

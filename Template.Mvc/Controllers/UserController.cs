@@ -12,10 +12,8 @@ namespace Template.Mvc.Controllers
         private readonly IUserAppService _userAppService;
 
         public UserController(IUserAppService userAppService)
-        //public UserController()
         {
             _userAppService = userAppService;
-            //_userAppService = new UserAppService(new );
         }
 
         // GET: User

@@ -13,7 +13,7 @@ using Template.Domain.Services;
 
 namespace Template.IoC
 {
-    public class NativeInjectorBootStrapper
+    public class NinjectInjectorBootStrapper
     {
         public class NinjectControllerFactory : DefaultControllerFactory
         {

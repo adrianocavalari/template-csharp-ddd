@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Template.Data.Context;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
@@ -20,16 +19,6 @@ namespace Template.Data.Repositories
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-
-
-        //public Repository()
-        //{
-        //    //var contextManager = ServiceLocator.Current.GetInstance<IContextManager<SteamSkinContext>>()
-        //    //    as ContextManager<SteamSkinContext>;
-
-        //    //_dbContext = contextManager.GetContext();
-        //    //_dbSet = _dbContext.Set<TEntity>();
-        //}
 
         public void Add(TEntity entity)
         {
@@ -47,9 +36,15 @@ namespace Template.Data.Repositories
             return _dbSet.Find(id);
         }
 
+        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> where)
+        {
+            return _dbSet.Where(where).ToList();
+        }
+
         public void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(TEntity entity)
@@ -58,9 +53,51 @@ namespace Template.Data.Repositories
             _context.SaveChanges();
         }
 
+        public async Task AddAsync(TEntity entity)
+        {
+            _dbSet.Add(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TEntity entity)
+        {
+            _dbSet.Attach(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAsync(TEntity entity)
+        {
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> where)
+        {
+            return await _dbSet.Where(where).ToListAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }
