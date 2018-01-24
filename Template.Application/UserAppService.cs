@@ -1,21 +1,23 @@
-﻿using Template.Application.Interface;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Template.Application.Interface;
 using Template.Domain.Entities;
-using Template.Domain.Interfaces.Services;
+using Template.Domain.Interfaces.Repository;
 
 namespace Template.Application
 {
     public class UserAppService : AppService<User>, IUserAppService
     {
-        IUserService _service;
-        public UserAppService(IUserService service) 
-            : base(service)
+        IUserRepository _userRepository;
+        public UserAppService(IUserRepository userRepository) 
+            : base(userRepository)
         {
-            _service = service;
+            _userRepository = userRepository;
         }
 
-        public void GetByName(string name)
+        public async Task<IEnumerable<User>> GetByNameAsync(string name)
         {
-            _service.GetByName(name);
+            return await _userRepository.GetByNameAsync(name);
         }
     }
 }

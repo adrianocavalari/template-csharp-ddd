@@ -13,7 +13,7 @@ namespace Template.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<User>> GetByName(string name)
+        public async Task<IEnumerable<User>> GetByNameAsync(string name)
         {
 
             return await GetByAsync(g => g.Name.Equals(name, System.StringComparison.InvariantCultureIgnoreCase));

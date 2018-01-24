@@ -4,6 +4,7 @@ using Template.Domain.Entities;
 using System.Collections.Generic;
 using Template.Mvc.ViewModels;
 using Template.Application.Interface;
+using System.Threading.Tasks;
 
 namespace Template.Mvc.Controllers
 {
@@ -17,9 +18,9 @@ namespace Template.Mvc.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var all = Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(_userAppService.GetAll());
+            var all = Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(await _userAppService.GetByNameAsync("adriano"));
             return View(all);
         }
 

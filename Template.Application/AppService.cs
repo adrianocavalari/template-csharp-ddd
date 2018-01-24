@@ -1,47 +1,47 @@
 ﻿using System.Collections.Generic;
 using Template.Application.Interface;
-using Template.Domain.Interfaces.Services;
+using Template.Domain.Interfaces.Repository;
 
 namespace Template.Application
 {
     public class AppService<TEntity> : IAppService<TEntity>
         where TEntity : class
     {
-        private readonly IService<TEntity> _service;
+        private readonly IRepository<TEntity> _repository;
 
-        public AppService(IService<TEntity> service)
+        public AppService(IRepository<TEntity> repository)
         {
-            _service = service;
+            _repository = repository;
         }
 
         public void Add(TEntity entity)
         {
-            _service.Add(entity);
+            _repository.Add(entity);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _service.GetAll();
+            return _repository.GetAll();
         }
 
         public TEntity GetById(int id)
         {
-            return _service.GetById(id);
+            return _repository.GetById(id);
         }
 
         public void Remove(TEntity entity)
         {
-            _service.Add(entity);
+            _repository.Add(entity);
         }
 
         public void Update(TEntity entity)
         {
-            _service.Add(entity);
+            _repository.Add(entity);
         }
 
         public void Dispose()
         {
-            _service.Dispose();
+            _repository.Dispose();
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Template.Domain.Interfaces.Repository
 {
     public interface IUserRepository: IRepository<User>
     {
-        Task<IEnumerable<User>> GetByName(string name);
+        Task<IEnumerable<User>> GetByNameAsync(string name);
     }
 }

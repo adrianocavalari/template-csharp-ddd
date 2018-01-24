@@ -8,8 +8,6 @@ using Template.Application.Interface;
 using Template.Data.Context;
 using Template.Data.Repositories;
 using Template.Domain.Interfaces.Repository;
-using Template.Domain.Interfaces.Services;
-using Template.Domain.Services;
 
 namespace Template.IoC
 {
@@ -33,7 +31,6 @@ namespace Template.IoC
             private void AddBindings()
             {
                 ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
-                ninjectKernel.Bind<IUserService>().To<UserService>();
                 ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
 
                 ninjectKernel.Bind<DbContext>().To<TemplateContext>();
