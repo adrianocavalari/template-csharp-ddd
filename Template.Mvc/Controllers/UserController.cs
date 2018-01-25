@@ -18,16 +18,16 @@ namespace Template.Mvc.Controllers
         // GET: User
         public async Task<ActionResult> Index()
         {
-            //_userAppService.AddTwoAsync(new List<UserViewModel>
-            //{
-            //    new UserViewModel
-            //    {
-            //        Name = "Ricardo"
-            //    }, new UserViewModel
-            //    {
-            //        Name = "Leonardo"
-            //    },
-            //});
+            _userAppService.AddTwoAsync(new List<UserViewModel>
+            {
+                new UserViewModel
+                {
+                    Name = "Ricardo"
+                }, new UserViewModel
+                {
+                    Name = "Leonardo"
+                },
+            });
 
             var all = await _userAppService.GetByNameAsync("adriano");
 

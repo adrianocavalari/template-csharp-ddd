@@ -8,30 +8,35 @@ using Template.Domain.Interfaces.Repository;
 using System.Linq;
 using Template.Data.Interfaces;
 
-namespace Template.Application
+namespace Template.Application.Service
 {
     public class UserAppService : AppService<User>, IUserAppService
     {
-        static List<IUserRepository> contexts = new List<IUserRepository>();
+        private readonly IUnitOfWork _unitOfWork;
 
         private readonly IUserRepository _userRepository;
-        public UserAppService(IUserRepository userRepository) 
+        private readonly IOrderRepository _orderRepository;
+
+        public UserAppService(IUnitOfWork unitOfWork, IUserRepository userRepository, IOrderRepository orderRepository)
             : base(userRepository)
         {
+            _unitOfWork = unitOfWork;
             _userRepository = userRepository;
-            contexts.Add(_userRepository);
+            _orderRepository = orderRepository;
         }
 
         public void AddTwoAsync(List<UserViewModel> users)
         {
-            var usersM =  Mapper.Map<IEnumerable<UserViewModel>, IEnumerable<User>>(users);
-            BeginTransaction();
-            foreach (var item in usersM)
+            var usersM = Mapper.Map<IEnumerable<UserViewModel>, IEnumerable<User>>(users);
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.Repository<User>().AddTrans(usersM.First());
+            _unitOfWork.Repository<Order>().AddTrans(new Order
             {
-                _userRepository.AddTrans(item);
-            }
+                Total = 1,
+                UserId = 1
+            });
 
-            Commit();
+            _unitOfWork.Commit();
         }
 
         public async Task<IEnumerable<UserViewModel>> GetByNameAsync(string name)

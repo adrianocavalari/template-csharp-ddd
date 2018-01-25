@@ -19,6 +19,8 @@ namespace Template.Data.Context
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<Order> Order { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -26,7 +28,7 @@ namespace Template.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UserMap());
-
+            modelBuilder.Configurations.Add(new OrderMap());
         }
     }
 }

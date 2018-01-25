@@ -3,7 +3,7 @@ using Template.Application.Interface;
 using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
-namespace Template.Application
+namespace Template.Application.Service
 {
     public class AppService<TEntity> : IAppService<TEntity>
         where TEntity : class
@@ -13,16 +13,6 @@ namespace Template.Application
         public AppService(IRepository<TEntity> repository)
         {
             _repository = repository;
-        }
-
-        protected void BeginTransaction()
-        {
-            _repository.BeginTransaction();
-        }
-
-        protected void Commit()
-        {
-            _repository.Commit();
         }
 
         public void Add(TEntity entity)

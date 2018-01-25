@@ -16,10 +16,10 @@ namespace Template.Data.Repositories
         private readonly DbSet<TEntity> _dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
-        public Repository(IUnitOfWork unitOfWork)
+        public Repository(DbContext context)
         {
-            _unitOfWork = unitOfWork;
-            _context = unitOfWork.DbContext();
+            //_unitOfWork = unitOfWork;
+            _context = context;
             _dbSet = _context.Set<TEntity>();
         }
 
@@ -31,6 +31,7 @@ namespace Template.Data.Repositories
 
         public void AddTrans(TEntity entity)
         {
+            //_unitOfWork.BeginTransaction();
             _dbSet.Add(entity);
         }
 
