@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using Template.Domain.Interfaces.Repository;
+using Template.Data.Interfaces;
 
 namespace Template.Data
 {
@@ -40,6 +40,11 @@ namespace Template.Data
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public DbContext DbContext()
+        {
+            return _context;
         }
     }
 }

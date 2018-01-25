@@ -9,6 +9,7 @@ using Template.Application.AutoMapper;
 using Template.Application.Interface;
 using Template.Data;
 using Template.Data.Context;
+using Template.Data.Interfaces;
 using Template.Data.Repositories;
 using Template.Domain.Interfaces.Repository;
 

@@ -8,6 +8,9 @@ namespace Template.Domain.Interfaces.Repository
     public interface IRepository<TEntity> : IDisposable
         where TEntity : class
     {
+        void BeginTransaction();
+        void Commit();
+
         void Add(TEntity entity);
         void AddTrans(TEntity entity);
         void Update(TEntity entity);

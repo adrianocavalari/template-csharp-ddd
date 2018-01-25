@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
@@ -11,13 +12,15 @@ namespace Template.Data.Repositories
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        internal DbContext _context;
-        internal DbSet<TEntity> _dbSet;
+        private readonly DbContext _context;
+        private readonly DbSet<TEntity> _dbSet;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public Repository(DbContext context)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            _unitOfWork = unitOfWork;
+            _context = unitOfWork.DbContext();
+            _dbSet = _context.Set<TEntity>();
         }
 
         public void Add(TEntity entity)
@@ -104,6 +107,16 @@ namespace Template.Data.Repositories
             {
                 _context.Dispose();
             }
+        }
+
+        public void BeginTransaction()
+        {
+            _unitOfWork.BeginTransaction();
+        }
+
+        public void Commit()
+        {
+            _unitOfWork.Commit();
         }
     }
 }

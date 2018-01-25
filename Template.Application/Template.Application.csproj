@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Template.Data\Template.Data.csproj">
+      <Project>{E6120EAD-E037-465C-AE22-87080D195CE1}</Project>
+      <Name>Template.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Template.Domain\Template.Domain.csproj">
       <Project>{B61DD930-DE09-494B-B965-3AEE3B8F88BE}</Project>
       <Name>Template.Domain</Name>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Data.Entity;
 
-namespace Template.Domain.Interfaces.Repository
+namespace Template.Data.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        DbContext DbContext();
         void BeginTransaction();
         void Commit();
     }

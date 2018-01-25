@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Template.Application.Interface;
+using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Application
@@ -7,23 +8,21 @@ namespace Template.Application
     public class AppService<TEntity> : IAppService<TEntity>
         where TEntity : class
     {
-        private readonly IUnitOfWork _uow;
         private readonly IRepository<TEntity> _repository;
 
-        public AppService(IUnitOfWork uow, IRepository<TEntity> repository)
+        public AppService(IRepository<TEntity> repository)
         {
-            _uow = uow;
             _repository = repository;
         }
 
         protected void BeginTransaction()
         {
-            _uow.BeginTransaction();
+            _repository.BeginTransaction();
         }
 
         protected void Commit()
         {
-            _uow.Commit();
+            _repository.Commit();
         }
 
         public void Add(TEntity entity)

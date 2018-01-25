@@ -35,7 +35,6 @@
   <ItemGroup>
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />
-    <Compile Include="Interfaces\Repository\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Repository\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

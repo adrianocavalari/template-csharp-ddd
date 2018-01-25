@@ -6,16 +6,20 @@ using Template.Application.ViewModels;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces.Repository;
 using System.Linq;
+using Template.Data.Interfaces;
 
 namespace Template.Application
 {
     public class UserAppService : AppService<User>, IUserAppService
     {
+        static List<IUserRepository> contexts = new List<IUserRepository>();
+
         private readonly IUserRepository _userRepository;
-        public UserAppService(IUnitOfWork uow, IUserRepository userRepository) 
-            : base(uow, userRepository)
+        public UserAppService(IUserRepository userRepository) 
+            : base(userRepository)
         {
             _userRepository = userRepository;
+            contexts.Add(_userRepository);
         }
 
         public void AddTwoAsync(List<UserViewModel> users)
