@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Template.Mvc.AutoMapper;
 using static Template.IoC.NinjectInjectorBootStrapper;
 
 namespace Template.Mvc
@@ -14,8 +13,6 @@ namespace Template.Mvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            AutoMapperConfig.RegisterMapping();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }

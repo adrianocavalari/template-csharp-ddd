@@ -1,9 +1,11 @@
-﻿using Ninject;
+﻿using AutoMapper;
+using Ninject;
 using System;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Template.Application;
+using Template.Application.AutoMapper;
 using Template.Application.Interface;
 using Template.Data.Context;
 using Template.Data.Repositories;
@@ -20,6 +22,8 @@ namespace Template.IoC
             public NinjectControllerFactory()
             {
                 ninjectKernel = new StandardKernel();
+                //I don't know if it is the best way to do that, #NeedToFigureOut
+                AutoMapperConfig.RegisterMapping();
                 AddBindings();
             }
 
@@ -30,6 +34,8 @@ namespace Template.IoC
 
             private void AddBindings()
             {
+                ninjectKernel.Bind<IMapper>().To<Mapper>();
+
                 ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
                 ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
 

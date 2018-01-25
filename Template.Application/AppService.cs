@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Template.Application.AutoMapper;
 using Template.Application.Interface;
 using Template.Domain.Interfaces.Repository;
 
