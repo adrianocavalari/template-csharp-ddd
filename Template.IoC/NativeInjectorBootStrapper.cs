@@ -7,6 +7,7 @@ using System.Web.Routing;
 using Template.Application;
 using Template.Application.AutoMapper;
 using Template.Application.Interface;
+using Template.Data;
 using Template.Data.Context;
 using Template.Data.Repositories;
 using Template.Domain.Interfaces.Repository;
@@ -38,6 +39,8 @@ namespace Template.IoC
 
                 ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
                 ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+
+                ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
                 ninjectKernel.Bind<DbContext>().To<TemplateContext>();
                 // add your bindings here as required    

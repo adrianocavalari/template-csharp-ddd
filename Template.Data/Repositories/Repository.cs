@@ -26,6 +26,12 @@ namespace Template.Data.Repositories
             _context.SaveChanges();
         }
 
+        public void AddTrans(TEntity entity)
+        {
+            _dbSet.Add(entity);
+        }
+
+
         public IEnumerable<TEntity> GetAll()
         {
            return _dbSet.ToList();

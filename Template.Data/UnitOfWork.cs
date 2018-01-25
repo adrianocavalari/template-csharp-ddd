@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Template.Domain.Interfaces.Repository;
-using Template.Interfaces.Data;
 
 namespace Template.Data
 {
@@ -19,18 +14,12 @@ namespace Template.Data
             _context = context;
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         public void BeginTransaction()
         {
             _disposed = false;
         }
 
-        public void SaveChanges()
+        public void Commit()
         {
             _context.SaveChanges();
         }
@@ -45,6 +34,12 @@ namespace Template.Data
                 }
             }
             _disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

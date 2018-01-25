@@ -8,5 +8,8 @@ namespace Template.Application.Interface
     public interface IUserAppService : IAppService<User>
     {
         Task<IEnumerable<UserViewModel>> GetByNameAsync(string name);
+
+        void AddTwoAsync(List<UserViewModel> users);
+
     }
 }

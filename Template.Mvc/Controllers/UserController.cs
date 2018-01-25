@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using Template.Application.Interface;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Template.Application.ViewModels;
 
 namespace Template.Mvc.Controllers
 {
@@ -16,6 +18,17 @@ namespace Template.Mvc.Controllers
         // GET: User
         public async Task<ActionResult> Index()
         {
+            _userAppService.AddTwoAsync(new List<UserViewModel>
+            {
+                new UserViewModel
+                {
+                    Name = "Ricardo"
+                }, new UserViewModel
+                {
+                    Name = "Leonardo"
+                },
+            });
+
             var all = await _userAppService.GetByNameAsync("adriano");
 
             return View(all);
