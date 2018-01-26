@@ -23,8 +23,8 @@ namespace Template.Mvc
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/user").Include(
-                      "~/Scripts/views/controller/userService.js",
-                       "~/Scripts/views/service/userController.js"));
+                      "~/Scripts/views/service/userService.js",
+                      "~/Scripts/views/controller/userController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

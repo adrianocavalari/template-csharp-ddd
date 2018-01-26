@@ -63,7 +63,7 @@ namespace Template.Data.Repositories
         public async Task AddAsync(TEntity entity)
         {
             _dbSet.Add(entity);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(TEntity entity)

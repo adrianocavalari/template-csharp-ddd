@@ -18,17 +18,17 @@ namespace Template.Mvc.Controllers
         public async Task<ActionResult> Index()
         {
 
-            //var all = await _userAppService.GetAllAsync();
+            var all = await _userAppService.GetAllAsync();
 
-            return View();
+            return View(all);
         }
 
         public async Task<ActionResult> CreateTest()
         {
-            await _userAppService.AddAsync(
+            await _userAppService.AddTwoAsync(
                 new UserViewModel
                 {
-                    Name = "Ricardo"
+                    Name = "Ricardo2"
                 });
 
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);

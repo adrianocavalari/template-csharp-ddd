@@ -10,7 +10,7 @@ using Template.Data.Interfaces;
 
 namespace Template.Application.Service
 {
-    public class OrderAppService : AppService<Order, OrderViewModel>, IOrderAppService
+    public class OrderAppService : AppService<OrderViewModel, Order>, IOrderAppService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IOrderRepository _orderRepository;

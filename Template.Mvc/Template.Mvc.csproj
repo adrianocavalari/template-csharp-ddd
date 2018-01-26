@@ -228,10 +228,6 @@
       <Project>{29694D2F-6B07-4A66-8C32-6176B42CC83A}</Project>
       <Name>Template.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Domain\Template.Domain.csproj">
-      <Project>{B61DD930-DE09-494B-B965-3AEE3B8F88BE}</Project>
-      <Name>Template.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Template.IoC\Template.IoC.csproj">
       <Project>{02D870C8-5E73-4375-9D05-1810C6E3B038}</Project>
       <Name>Template.IoC</Name>

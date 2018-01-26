@@ -10,7 +10,7 @@ using Template.Data.Interfaces;
 
 namespace Template.Application.Service
 {
-    public class UserAppService : AppService<User, UserViewModel>, IUserAppService
+    public class UserAppService : AppService<UserViewModel, User>, IUserAppService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -26,7 +26,7 @@ namespace Template.Application.Service
         public void AddTwoAsync(List<UserViewModel> users)
         {
             var test = 1;
-            var usersM = Mapper.Map<IEnumerable<UserViewModel>, IEnumerable<User>>(users);
+            var usersM = Mapper.Map<IEnumerable<User>>(users);
             _unitOfWork.BeginTransaction();
             _unitOfWork.Repository<User>().Add(usersM.First());
 
@@ -42,9 +42,28 @@ namespace Template.Application.Service
             _unitOfWork.Commit();
         }
 
+        public async Task AddTwoAsync(UserViewModel user)
+        {
+            var test = 1;
+            var usersM = Mapper.Map<User>(user);
+            //_unitOfWork.BeginTransaction();
+            await _unitOfWork.Repository<User>().AddAsync(usersM);
+
+            if (test == 1)
+                throw new System.Exception("test");
+
+            await _unitOfWork.Repository<Order>().AddAsync(new Order
+            {
+                Total = 1,
+                User = usersM
+            });
+
+            _unitOfWork.Commit();
+        }
+
         public async Task<IEnumerable<UserViewModel>> GetByNameAsync(string name)
         {
-            return Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(await _userRepository.GetByNameAsync("adriano"));
+            return Mapper.Map<IEnumerable<UserViewModel>>(await _userRepository.GetByNameAsync("adriano"));
         }
     }
 }

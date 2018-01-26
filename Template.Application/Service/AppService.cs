@@ -7,9 +7,9 @@ using Template.Domain.Interfaces.Repository;
 
 namespace Template.Application.Service
 {
-    public class AppService<TEntity, TEntityViewModel> : IAppService<TEntity, TEntityViewModel>
-        where TEntity : class
+    public class AppService<TEntityViewModel, TEntity> : IAppService<TEntityViewModel>
         where TEntityViewModel : class
+        where TEntity : class
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<TEntity> _repository;
@@ -20,54 +20,54 @@ namespace Template.Application.Service
             _repository = _unitOfWork.Repository<TEntity>();
         }
 
-        public void Add(TEntity entity)
+        public void Add(TEntityViewModel entity)
         {
-            _repository.Add(entity);
+            _repository.Add(Mapper.Map<TEntity>(entity));
         }
 
         public IEnumerable<TEntityViewModel> GetAll()
         {
-            return Mapper.Map<IEnumerable<TEntity>, IEnumerable<TEntityViewModel>>(_repository.GetAll());
+            return Mapper.Map<IEnumerable<TEntityViewModel>>(_repository.GetAll());
         }
 
-        public TEntity GetById(int id)
+        public TEntityViewModel GetById(int id)
         {
-            return _repository.GetById(id);
+            return Mapper.Map<TEntityViewModel>(_repository.GetById(id));
         }
 
-        public void Update(TEntity entity)
+        public void Update(TEntityViewModel entity)
         {
-            _repository.Update(entity);
+            _repository.Update(Mapper.Map<TEntity>(entity));
         }
 
-        public void Remove(TEntity entity)
+        public void Remove(TEntityViewModel entity)
         {
-            _repository.Remove(entity);
+            _repository.Remove(Mapper.Map<TEntity>(entity));
         }
 
         public async Task AddAsync(TEntityViewModel entity)
         {
-            await _repository.AddAsync(Mapper.Map<TEntityViewModel, TEntity>(entity));
+            await _repository.AddAsync(Mapper.Map<TEntity>(entity));
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntityViewModel> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+            return Mapper.Map<TEntityViewModel>(await _repository.GetByIdAsync(id));
         }
 
         public async Task<IEnumerable<TEntityViewModel>> GetAllAsync()
         {
-            return Mapper.Map<IEnumerable<TEntity>, IEnumerable<TEntityViewModel>>(await _repository.GetAllAsync());
+            return Mapper.Map<IEnumerable<TEntityViewModel>>(await _repository.GetAllAsync());
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntityViewModel entity)
         {
-           await  _repository.UpdateAsync(entity);
+            await _repository.UpdateAsync(Mapper.Map<TEntity>(entity));
         }
 
-        public async Task RemoveAsync(TEntity entity)
+        public async Task RemoveAsync(TEntityViewModel entity)
         {
-            await _repository.RemoveAsync(entity);
+            await _repository.RemoveAsync(Mapper.Map<TEntity>(entity));
         }
 
         public void Dispose()
