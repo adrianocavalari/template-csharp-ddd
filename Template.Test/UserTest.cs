@@ -18,10 +18,10 @@ namespace Template.Test
         [TestMethod]
         public void SaveUser()
         {
-            _userAppService.Add(new User
-            {
-                Name = "test"
-            });
+            //_userAppService.Add(new User
+            //{
+            //    Name = "test"
+            //});
 
             //_userAppService.fin
         }

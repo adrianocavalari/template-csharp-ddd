@@ -5,7 +5,7 @@ using Template.Domain.Entities;
 
 namespace Template.Application.Interface
 {
-    public interface IUserAppService : IAppService<User>
+    public interface IUserAppService : IAppService<User, UserViewModel>
     {
         Task<IEnumerable<UserViewModel>> GetByNameAsync(string name);
 

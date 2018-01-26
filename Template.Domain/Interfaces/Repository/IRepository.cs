@@ -8,9 +8,6 @@ namespace Template.Domain.Interfaces.Repository
     public interface IRepository<TEntity> : IDisposable
         where TEntity : class
     {
-        void BeginTransaction();
-        void Commit();
-
         void Add(TEntity entity);
         void AddTrans(TEntity entity);
         void Update(TEntity entity);
@@ -25,6 +22,5 @@ namespace Template.Domain.Interfaces.Repository
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> where);
         Task<IEnumerable<TEntity>> GetAllAsync();
-
     }
 }

@@ -15,38 +15,35 @@ namespace Template.Mvc.Controllers
             _userAppService = userAppService;
         }
 
-        // GET: User
         public async Task<ActionResult> Index()
         {
-            _userAppService.AddTwoAsync(new List<UserViewModel>
-            {
+
+            //var all = await _userAppService.GetAllAsync();
+
+            return View();
+        }
+
+        public async Task<ActionResult> CreateTest()
+        {
+            await _userAppService.AddAsync(
                 new UserViewModel
                 {
                     Name = "Ricardo"
-                }, new UserViewModel
-                {
-                    Name = "Leonardo"
-                },
-            });
+                });
 
-            var all = await _userAppService.GetByNameAsync("adriano");
-
-            return View(all);
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: User/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -62,13 +59,11 @@ namespace Template.Mvc.Controllers
             }
         }
 
-        // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -84,13 +79,11 @@ namespace Template.Mvc.Controllers
             }
         }
 
-        // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

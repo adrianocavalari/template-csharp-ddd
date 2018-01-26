@@ -5,7 +5,7 @@ using Template.Domain.Entities;
 
 namespace Template.Application.Interface
 {
-    public interface IOrderAppService : IAppService<Order>
+    public interface IOrderAppService : IAppService<Order, OrderViewModel>
     {
 
     }

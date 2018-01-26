@@ -10,30 +10,33 @@ using Template.Data.Interfaces;
 
 namespace Template.Application.Service
 {
-    public class UserAppService : AppService<User>, IUserAppService
+    public class UserAppService : AppService<User, UserViewModel>, IUserAppService
     {
         private readonly IUnitOfWork _unitOfWork;
-
         private readonly IUserRepository _userRepository;
-        private readonly IOrderRepository _orderRepository;
 
-        public UserAppService(IUnitOfWork unitOfWork, IUserRepository userRepository, IOrderRepository orderRepository)
-            : base(userRepository)
+
+        public UserAppService(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = userRepository;
-            _orderRepository = orderRepository;
+            _userRepository = _unitOfWork.Repository<User>() as IUserRepository;
         }
 
         public void AddTwoAsync(List<UserViewModel> users)
         {
+            var test = 1;
             var usersM = Mapper.Map<IEnumerable<UserViewModel>, IEnumerable<User>>(users);
             _unitOfWork.BeginTransaction();
-            _unitOfWork.Repository<User>().AddTrans(usersM.First());
-            _unitOfWork.Repository<Order>().AddTrans(new Order
+            _unitOfWork.Repository<User>().Add(usersM.First());
+
+            if (test == 1)
+                throw new System.Exception("test");
+
+            _unitOfWork.Repository<Order>().Add(new Order
             {
                 Total = 1,
-                UserId = 1
+                User = usersM.First()
             });
 
             _unitOfWork.Commit();
