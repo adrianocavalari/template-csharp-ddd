@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Template.Data.Context;
+using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
@@ -12,49 +12,99 @@ namespace Template.Data.Repositories
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        //private readonly IDbContext _dbContext;
-        //private readonly IDbSet<TEntity> _dbSet = new TemplateContext();
-        private readonly TemplateContext _dbSet = new TemplateContext();
+        private readonly DbContext _context;
+        private readonly DbSet<TEntity> _dbSet;
 
-        //public Repository()
-        //{
-        //    //var contextManager = ServiceLocator.Current.GetInstance<IContextManager<SteamSkinContext>>()
-        //    //    as ContextManager<SteamSkinContext>;
-
-        //    //_dbContext = contextManager.GetContext();
-        //    //_dbSet = _dbContext.Set<TEntity>();
-        //}
+        public Repository(DbContext context)
+        {
+            _context = context;
+            _dbSet = _context.Set<TEntity>();
+        }
 
         public void Add(TEntity entity)
         {
-            _dbSet.Set<TEntity>().Add(entity);
-            _dbSet.SaveChanges();
+            _dbSet.Add(entity);
+            _context.SaveChanges();
         }
+
+        public void AddTrans(TEntity entity)
+        {
+            _dbSet.Add(entity);
+        }
+
 
         public IEnumerable<TEntity> GetAll()
         {
-           return _dbSet.Set<TEntity>().ToList();
+           return _dbSet.ToList();
         }
 
         public TEntity GetById(int id)
         {
-            return _dbSet.Set<TEntity>().Find(id);
+            return _dbSet.Find(id);
+        }
+
+        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> where)
+        {
+            return _dbSet.Where(where).ToList();
         }
 
         public void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
-            _dbSet.Entry(entity).State = EntityState.Modified;
-            _dbSet.SaveChanges();
+            _dbSet.Attach(entity);
+            _context.SaveChanges();
+        }
+
+        public async Task AddAsync(TEntity entity)
+        {
+            _dbSet.Add(entity);
+            //await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TEntity entity)
+        {
+            _dbSet.Attach(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAsync(TEntity entity)
+        {
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> where)
+        {
+            return await _dbSet.Where(where).ToListAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

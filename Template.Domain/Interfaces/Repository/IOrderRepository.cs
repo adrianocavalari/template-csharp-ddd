@@ -4,8 +4,7 @@ using Template.Domain.Entities;
 
 namespace Template.Domain.Interfaces.Repository
 {
-    public interface IUserRepository: IRepository<User>
+    public interface IOrderRepository : IRepository<Order>
     {
-        Task<IEnumerable<User>> GetByNameAsync(string name);
     }
 }

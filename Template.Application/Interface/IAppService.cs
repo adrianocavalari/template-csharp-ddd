@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Template.Application.Interface
 {
-    public interface IAppService<TEntity> : IDisposable
-        where TEntity : class
+    public interface IAppService<TEntityViewModel> : IDisposable
+        where TEntityViewModel : class
     {
-        void Add(TEntity entity);
-        TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
-        void Update(TEntity entity);
-        void Remove(TEntity entity);
+        void Add(TEntityViewModel entity);
+        TEntityViewModel GetById(int id);
+        IEnumerable<TEntityViewModel> GetAll();
+        void Update(TEntityViewModel entity);
+        void Remove(TEntityViewModel entity);
+
+        Task AddAsync(TEntityViewModel entity);
+        Task<TEntityViewModel> GetByIdAsync(int id);
+        Task<IEnumerable<TEntityViewModel>> GetAllAsync();
+        Task UpdateAsync(TEntityViewModel entity);
+        Task RemoveAsync(TEntityViewModel entity);
+
+
     }
 }

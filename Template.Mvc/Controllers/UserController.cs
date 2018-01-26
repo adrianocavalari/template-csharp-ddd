@@ -1,13 +1,8 @@
 ﻿using System.Web.Mvc;
-using Template.Data.Repositories;
-using Template.Domain.Interfaces.Repository;
-using AutoMapper;
-using System.Collections;
-using Template.Domain.Entities;
-using System.Collections.Generic;
-using Template.Mvc.ViewModels;
 using Template.Application.Interface;
-using Template.Application;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Template.Application.ViewModels;
 
 namespace Template.Mvc.Controllers
 {
@@ -20,26 +15,35 @@ namespace Template.Mvc.Controllers
             _userAppService = userAppService;
         }
 
-        // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var all = Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(_userAppService.GetAll());
+
+            var all = await _userAppService.GetAllAsync();
+
             return View(all);
         }
 
-        // GET: User/Details/5
+        public async Task<ActionResult> CreateTest()
+        {
+            await _userAppService.AddTwoAsync(
+                new UserViewModel
+                {
+                    Name = "Ricardo2"
+                });
+
+            return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -55,13 +59,11 @@ namespace Template.Mvc.Controllers
             }
         }
 
-        // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -77,13 +79,11 @@ namespace Template.Mvc.Controllers
             }
         }
 
-        // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
