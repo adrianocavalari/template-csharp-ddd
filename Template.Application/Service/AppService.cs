@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Template.Application.Interface;
-using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Application.Service
@@ -45,11 +44,6 @@ namespace Template.Application.Service
             _repository.Remove(Mapper.Map<TEntity>(entity));
         }
 
-        public async Task AddAsync(TEntityViewModel entity)
-        {
-            await _repository.AddAsync(Mapper.Map<TEntity>(entity));
-        }
-
         public async Task<TEntityViewModel> GetByIdAsync(int id)
         {
             return Mapper.Map<TEntityViewModel>(await _repository.GetByIdAsync(id));
@@ -58,16 +52,6 @@ namespace Template.Application.Service
         public async Task<IEnumerable<TEntityViewModel>> GetAllAsync()
         {
             return Mapper.Map<IEnumerable<TEntityViewModel>>(await _repository.GetAllAsync());
-        }
-
-        public async Task UpdateAsync(TEntityViewModel entity)
-        {
-            await _repository.UpdateAsync(Mapper.Map<TEntity>(entity));
-        }
-
-        public async Task RemoveAsync(TEntityViewModel entity)
-        {
-            await _repository.RemoveAsync(Mapper.Map<TEntity>(entity));
         }
 
         public void Dispose()

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using Template.Data.Repositories;
-using Template.Domain.Interfaces.Repository;
 
-namespace Template.Data.Interfaces
+namespace Template.Domain.Interfaces.Repository
 {
     public interface IUnitOfWork : IDisposable
     {

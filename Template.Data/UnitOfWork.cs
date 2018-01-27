@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using Template.Data.Interfaces;
 using Template.Data.Repositories;
 using Template.Domain.Interfaces.Repository;
 

@@ -13,12 +13,7 @@ namespace Template.Application.Interface
         void Update(TEntityViewModel entity);
         void Remove(TEntityViewModel entity);
 
-        Task AddAsync(TEntityViewModel entity);
         Task<TEntityViewModel> GetByIdAsync(int id);
         Task<IEnumerable<TEntityViewModel>> GetAllAsync();
-        Task UpdateAsync(TEntityViewModel entity);
-        Task RemoveAsync(TEntityViewModel entity);
-
-
     }
 }

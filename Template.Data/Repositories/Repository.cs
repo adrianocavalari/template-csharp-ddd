@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Template.Data.Interfaces;
 using Template.Domain.Interfaces.Repository;
 
 namespace Template.Data.Repositories
@@ -24,14 +23,7 @@ namespace Template.Data.Repositories
         public void Add(TEntity entity)
         {
             _dbSet.Add(entity);
-            _context.SaveChanges();
         }
-
-        public void AddTrans(TEntity entity)
-        {
-            _dbSet.Add(entity);
-        }
-
 
         public IEnumerable<TEntity> GetAll()
         {
@@ -51,31 +43,11 @@ namespace Template.Data.Repositories
         public void Remove(TEntity entity)
         {
             _dbSet.Remove(entity);
-            _context.SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
-            _context.SaveChanges();
-        }
-
-        public async Task AddAsync(TEntity entity)
-        {
-            _dbSet.Add(entity);
-            //await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateAsync(TEntity entity)
-        {
-            _dbSet.Attach(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task RemoveAsync(TEntity entity)
-        {
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int id)

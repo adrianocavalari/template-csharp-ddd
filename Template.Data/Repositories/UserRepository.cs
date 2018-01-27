@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using Template.Data.Interfaces;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces.Repository;
 

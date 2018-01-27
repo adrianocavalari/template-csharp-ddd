@@ -23,9 +23,9 @@ namespace Template.Mvc.Controllers
             return View(all);
         }
 
-        public async Task<ActionResult> CreateTest()
+        public ActionResult CreateTest()
         {
-            await _userAppService.AddTwoAsync(
+            _userAppService.AddTwoAsync(
                 new UserViewModel
                 {
                     Name = "Ricardo2"

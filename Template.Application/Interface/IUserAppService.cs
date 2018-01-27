@@ -11,7 +11,6 @@ namespace Template.Application.Interface
 
         void AddTwoAsync(List<UserViewModel> users);
 
-        Task AddTwoAsync(UserViewModel user);
-
+        void AddTwoAsync(UserViewModel user);
     }
 }

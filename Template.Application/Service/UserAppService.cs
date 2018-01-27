@@ -6,7 +6,6 @@ using Template.Application.ViewModels;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces.Repository;
 using System.Linq;
-using Template.Data.Interfaces;
 
 namespace Template.Application.Service
 {
@@ -14,7 +13,6 @@ namespace Template.Application.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
-
 
         public UserAppService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
@@ -42,17 +40,17 @@ namespace Template.Application.Service
             _unitOfWork.Commit();
         }
 
-        public async Task AddTwoAsync(UserViewModel user)
+        public void AddTwoAsync(UserViewModel user)
         {
             var test = 1;
             var usersM = Mapper.Map<User>(user);
-            //_unitOfWork.BeginTransaction();
-            await _unitOfWork.Repository<User>().AddAsync(usersM);
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.Repository<User>().Add(usersM);
 
-            if (test == 1)
-                throw new System.Exception("test");
+            //if (test == 1)
+            //    throw new System.Exception("test");
 
-            await _unitOfWork.Repository<Order>().AddAsync(new Order
+            _unitOfWork.Repository<Order>().Add(new Order
             {
                 Total = 1,
                 User = usersM
