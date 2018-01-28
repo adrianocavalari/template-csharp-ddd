@@ -18,13 +18,15 @@ namespace Template.IoC
     {
         public class NinjectControllerFactory : DefaultControllerFactory
         {
-            private IKernel ninjectKernel;
+            public IKernel ninjectKernel;
 
             public NinjectControllerFactory()
             {
                 ninjectKernel = new StandardKernel();
+
                 //I don't know if it is the best way to do this, #NeedToFigureOut
                 AutoMapperConfig.RegisterMapping();
+
                 AddBindings();
             }
 
@@ -45,6 +47,7 @@ namespace Template.IoC
                 ninjectKernel.Bind<IOrderAppService>().To<OrderAppService>();
                 ninjectKernel.Bind<IOrderRepository>().To<OrderRepository>();
 
+                
                 // add your bindings here as required    
             }
         }

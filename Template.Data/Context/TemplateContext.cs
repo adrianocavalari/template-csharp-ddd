@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Template.Data.Mapping;
 using Template.Domain.Entities;
