@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Template.Mvc.Startup))]
+[assembly: OwinStartup(typeof(Template.Identity.Startup))]
 
-namespace Template.Mvc
+namespace Template.Identity
 {
     public partial class Startup
     {

@@ -4,9 +4,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using Template.Identity;
 
-namespace Template.Mvc
+namespace Template.Identity
 {
     public partial class Startup
     {

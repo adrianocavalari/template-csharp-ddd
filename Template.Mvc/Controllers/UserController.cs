@@ -1,12 +1,10 @@
-﻿using System.Web.Mvc;
-using Template.Application.Interface;
-using System.Threading.Tasks;
-using Template.Application.ViewModels;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using Template.Application.Interface;
+using Template.Application.ViewModels;
 using Template.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace Template.Mvc.Controllers
 {
@@ -14,62 +12,59 @@ namespace Template.Mvc.Controllers
     {
         private readonly IUserAppService _userAppService;
 
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private readonly ApplicationSignInManager _signInManager;
+        private readonly ApplicationUserManager _userManager;
 
         public UserController(IUserAppService userAppService, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _userAppService = userAppService;
-            UserManager = userManager;
-            SignInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
+        //public ApplicationSignInManager SignInManager
+        //{
+        //    get
+        //    {
+        //        return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+        //    }
+        //    private set
+        //    {
+        //        _signInManager = value;
+        //    }
+        //}
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult Login(LoginViewModel login)
-        {
-            if (ModelState.IsValid)
-            {
-                var context = HttpContext.GetOwinContext();
-                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-                var authManager = HttpContext.GetOwinContext().Authentication;
+        //[HttpPost]
+        //public ActionResult Login(LoginViewModel login)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Identity.AppUser user = _userManager.Find(login.UserName, login.Password);
+        //        if (user != null)
+        //        {
+        //            var ident = _userManager.CreateIdentity(user,
+        //                DefaultAuthenticationTypes.ApplicationCookie);
 
-                Identity.AppUser user = userManager.Find(login.UserName, login.Password);
-                if (user != null)
-                {
-                    var ident = userManager.CreateIdentity(user,
-                        DefaultAuthenticationTypes.ApplicationCookie);
-                    authManager.SignIn(
-                        new AuthenticationProperties { IsPersistent = false }, ident);
-                    return Redirect(login.ReturnUrl ?? Url.Action("Index", "Home"));
-                }
-            }
-            ModelState.AddModelError("", "Invalid username or password");
-            return View(login);
-        }
+        //            authManager.SignIn(
+        //                new AuthenticationProperties { IsPersistent = false }, ident);
+        //            return Redirect(login.ReturnUrl ?? Url.Action("Index", "Home"));
+        //        }
+        //    }
+        //    ModelState.AddModelError("", "Invalid username or password");
+        //    return View(login);
+        //}
 
         //public ActionResult CreateRole2(string roleName)
         //{
@@ -83,10 +78,10 @@ namespace Template.Mvc.Controllers
         public async Task<ActionResult> Index()
         {
             var user = new AppUser { UserName = "Test", Email = "teste@test.com" };
-            var result = await UserManager.CreateAsync(user, "123456@a");
+            var result = await _userManager.CreateAsync(user, "123456@a");
             if (result.Succeeded)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
