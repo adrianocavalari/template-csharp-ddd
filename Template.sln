@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Test", "4.3 - Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Test", "Template.Test\Template.Test.csproj", "{CC597EE1-6A90-4482-B6F1-7012E486B01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Identity", "Template.Identity2\Template.Identity.csproj", "{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Identity", "Template.Identity\Template.Identity.csproj", "{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,8 +3,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Template.Identity.Model;
 
-namespace Template.Identity
+namespace Template.Identity.Manager
 {
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<AppUser, string>

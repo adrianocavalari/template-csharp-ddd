@@ -292,7 +292,7 @@
       <Project>{29694D2F-6B07-4A66-8C32-6176B42CC83A}</Project>
       <Name>Template.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Identity2\Template.Identity.csproj">
+    <ProjectReference Include="..\Template.Identity\Template.Identity.csproj">
       <Project>{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}</Project>
       <Name>Template.Identity</Name>
     </ProjectReference>

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using Template.Identity.Model;
 
-namespace Template.Identity
+namespace Template.Identity.Context
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {

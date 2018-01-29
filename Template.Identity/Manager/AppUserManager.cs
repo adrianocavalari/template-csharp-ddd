@@ -2,8 +2,10 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Template.Identity.Context;
+using Template.Identity.Model;
 
-namespace Template.Identity
+namespace Template.Identity.Manager
 {
     public class AppUserManager : UserManager<AppUser>
     {

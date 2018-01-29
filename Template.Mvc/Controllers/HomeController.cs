@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNet.Identity.Owin;
-using System.Web;
-using System.Web.Mvc;
-using Template.Identity;
+﻿using System.Web.Mvc;
+using Template.Identity.Manager;
+using Template.Identity.Model;
 
 namespace Template.Mvc.Controllers
 {

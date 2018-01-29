@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using Template.Application.Interface;
 using Template.Application.ViewModels;
-using Template.Identity;
+using Template.Identity.Manager;
+using Template.Identity.Model;
 
 namespace Template.Mvc.Controllers
 {

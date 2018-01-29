@@ -3,8 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
+using Template.Identity.Context;
+using Template.Identity.Model;
+using Template.Identity.Service;
 
-namespace Template.Identity
+namespace Template.Identity.Manager
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<AppUser>

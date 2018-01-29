@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Template.Identity
+namespace Template.Identity.Service
 {
     public class EmailService : IIdentityMessageService
     {
