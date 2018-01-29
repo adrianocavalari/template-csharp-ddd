@@ -4,6 +4,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using Template.Identity.Context;
+using Template.Identity.Manager;
+using Template.Identity.Model;
 
 namespace Template.Identity
 {
