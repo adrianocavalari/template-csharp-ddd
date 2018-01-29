@@ -46,7 +46,7 @@ namespace Template.Mvc.Controllers
             var context = HttpContext.GetOwinContext();
 
             var user = new ApplicationUser { UserName = "Test", Email = "teste@test.com" };
-            var result = await UserManager.CreateAsync(user, "123456@a");
+            var result = await UserManager.CreateAsync(user, "Template@123");
             if (result.Succeeded)
             {
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

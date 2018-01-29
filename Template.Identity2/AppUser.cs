@@ -2,12 +2,37 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Template.Identity
 {
+    public class AspNetUser : Domain.Interfaces.Repository.IUser
+    {
+        private readonly HttpContextBase _httpContext;
+
+        public AspNetUser(HttpContextBase httpContext)
+        {
+            _httpContext = httpContext;
+        }
+
+        public string Name => _httpContext.User.Identity.Name;
+
+        public bool IsAuthenticated()
+        {
+            return _httpContext.User.Identity.IsAuthenticated;
+        }
+
+        //public IEnumerable<Claim> GetClaimsIdentity()
+        //{
+        //    return _httpContext.User.Claims;
+        //}
+    }
+
     public class ApplicationUser : IdentityUser
     {
         //add your custom properties which have not included in IdentityUser before
@@ -30,14 +55,14 @@ namespace Template.Identity
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
-        public ApplicationDbContext()
-            : base("TemplateEntity", throwIfV1Schema: false)
+        public ApplicationDbContext(string name)
+            : base(name, throwIfV1Schema: false)
         {
         }
 
         public static ApplicationDbContext Create()
         {
-            var context = new ApplicationDbContext();
+            var context = new ApplicationDbContext("TemplateEntity");
             //context.Database.Create();
             return context;
         }

@@ -103,6 +103,7 @@ namespace Template.Identity
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
+            var a = context.GetUserManager<ApplicationUserManager>();
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }

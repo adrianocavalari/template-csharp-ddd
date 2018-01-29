@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject;
 using System;
 using System.Data.Entity;
@@ -11,6 +12,7 @@ using Template.Data;
 using Template.Data.Context;
 using Template.Data.Repositories;
 using Template.Domain.Interfaces.Repository;
+using Template.Identity;
 
 namespace Template.IoC
 {
@@ -46,8 +48,9 @@ namespace Template.IoC
 
                 ninjectKernel.Bind<IOrderAppService>().To<OrderAppService>();
                 ninjectKernel.Bind<IOrderRepository>().To<OrderRepository>();
+                ninjectKernel.Bind<IUser, AspNetUser>();
 
-                
+
                 // add your bindings here as required    
             }
         }
