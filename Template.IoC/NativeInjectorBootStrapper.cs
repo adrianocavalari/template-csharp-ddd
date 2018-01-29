@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Ninject;
 using System;
 using System.Data.Entity;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Template.Application.AutoMapper;
@@ -16,43 +20,43 @@ using Template.Identity;
 
 namespace Template.IoC
 {
-    public class NinjectInjectorBootStrapper
+    public class NinjectControllerFactory : DefaultControllerFactory
     {
-        public class NinjectControllerFactory : DefaultControllerFactory
+        public IKernel ninjectKernel;
+
+        public NinjectControllerFactory()
         {
-            public IKernel ninjectKernel;
+            ninjectKernel = new StandardKernel();
 
-            public NinjectControllerFactory()
-            {
-                ninjectKernel = new StandardKernel();
+            //I don't know if it is the best way to do this, #NeedToFigureOut
+            AutoMapperConfig.RegisterMapping();
 
-                //I don't know if it is the best way to do this, #NeedToFigureOut
-                AutoMapperConfig.RegisterMapping();
+            AddBindings();
+        }
 
-                AddBindings();
-            }
+        protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+        {
+            return controllerType == null ? null : (IController)ninjectKernel.Get(controllerType);
+        }
 
-            protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
-            {
-                return controllerType == null ? null : (IController)ninjectKernel.Get(controllerType);
-            }
+        private void AddBindings()
+        {
+            ninjectKernel.Bind<IMapper>().To<Mapper>();
+            ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            ninjectKernel.Bind<DbContext>().To<TemplateContext>();
 
-            private void AddBindings()
-            {
-                ninjectKernel.Bind<IMapper>().To<Mapper>();
-                ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-                ninjectKernel.Bind<DbContext>().To<TemplateContext>();
+            ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
+            ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
 
-                ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
-                ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+            ninjectKernel.Bind<IOrderAppService>().To<OrderAppService>();
+            ninjectKernel.Bind<IOrderRepository>().To<OrderRepository>();
 
-                ninjectKernel.Bind<IOrderAppService>().To<OrderAppService>();
-                ninjectKernel.Bind<IOrderRepository>().To<OrderRepository>();
-                ninjectKernel.Bind<IUser, AspNetUser>();
-
-
-                // add your bindings here as required    
-            }
+            ninjectKernel.Bind<ApplicationDbContext>().ToSelf();
+            ninjectKernel.Bind(typeof(IUserStore<>)).To(typeof(UserStore<>));
+            ninjectKernel.Bind<IAuthenticationManager>().ToMethod(c => HttpContext.Current.GetOwinContext().Authentication);
+            ninjectKernel.Bind<ApplicationUserManager>().ToMethod(c =>
+                HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+            // add your bindings here as required    
         }
     }
 }

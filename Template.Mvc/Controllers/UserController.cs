@@ -57,7 +57,7 @@ namespace Template.Mvc.Controllers
                 var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 var authManager = HttpContext.GetOwinContext().Authentication;
 
-                Identity.ApplicationUser user = userManager.Find(login.UserName, login.Password);
+                Identity.AppUser user = userManager.Find(login.UserName, login.Password);
                 if (user != null)
                 {
                     var ident = userManager.CreateIdentity(user,
@@ -82,7 +82,7 @@ namespace Template.Mvc.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var user = new ApplicationUser { UserName = "Test", Email = "teste@test.com" };
+            var user = new AppUser { UserName = "Test", Email = "teste@test.com" };
             var result = await UserManager.CreateAsync(user, "123456@a");
             if (result.Succeeded)
             {

@@ -45,7 +45,7 @@ namespace Template.Mvc.Controllers
         {
             var context = HttpContext.GetOwinContext();
 
-            var user = new ApplicationUser { UserName = "Test", Email = "teste@test.com" };
+            var user = new AppUser { UserName = "Test", Email = "teste@test.com" };
             var result = await UserManager.CreateAsync(user, "Template@123");
             if (result.Succeeded)
             {
