@@ -12,6 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{F7DAEA4B-EB18-466C-8801-384F3A4BE8EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{E35E3B1D-F201-463C-B46C-691A723F1909}"
+	ProjectSection(SolutionItems) = preProject
+		Template.Application\packages.config = Template.Application\packages.config
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{886BAEAB-AE16-476F-83A1-26534FDC278A}"
 EndProject

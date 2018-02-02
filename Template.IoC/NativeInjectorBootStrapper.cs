@@ -19,6 +19,7 @@ using Template.Domain.Interfaces.Repository;
 using Template.Identity;
 using Template.Identity.Context;
 using Template.Identity.Manager;
+using Template.Identity.Model;
 
 namespace Template.IoC
 {

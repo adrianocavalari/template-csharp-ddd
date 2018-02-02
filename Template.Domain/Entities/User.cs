@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Template.Domain.Interfaces.Repository;
 
 namespace Template.Domain.Entities
 {

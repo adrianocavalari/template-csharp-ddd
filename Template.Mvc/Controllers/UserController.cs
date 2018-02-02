@@ -2,8 +2,6 @@
 using System.Web.Mvc;
 using Template.Application.Interface;
 using Template.Application.ViewModels;
-using Template.Identity.Manager;
-using Template.Identity.Model;
 
 namespace Template.Mvc.Controllers
 {
@@ -11,31 +9,20 @@ namespace Template.Mvc.Controllers
     {
         private readonly IUserAppService _userAppService;
 
-        private readonly ApplicationSignInManager _signInManager;
-        private readonly ApplicationUserManager _userManager;
-
-        public UserController(IUserAppService userAppService, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public UserController(IUserAppService userAppService)
         {
             _userAppService = userAppService;
-            _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         public async Task<ActionResult> Index()
         {
-            var user = new AppUser { UserName = "Test", Email = "teste@test.com" };
-            var result = await _userManager.CreateAsync(user, "123456@a");
-            if (result.Succeeded)
+            var user = new UserViewModel
             {
-                await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                Name = "Adriano",
+                Email = "adriano@Template.com"
+            };
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-            }
-
+            await _userAppService.AddUserAppAsync(user);
             var all = await _userAppService.GetAllAsync();
 
             return View(all);
