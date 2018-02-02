@@ -21,59 +21,6 @@ namespace Template.Mvc.Controllers
             _signInManager = signInManager;
         }
 
-        //public ApplicationSignInManager SignInManager
-        //{
-        //    get
-        //    {
-        //        return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-        //    }
-        //    private set
-        //    {
-        //        _signInManager = value;
-        //    }
-        //}
-
-        //public ApplicationUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        //    }
-        //    private set
-        //    {
-        //        _userManager = value;
-        //    }
-        //}
-
-        //[HttpPost]
-        //public ActionResult Login(LoginViewModel login)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Identity.AppUser user = _userManager.Find(login.UserName, login.Password);
-        //        if (user != null)
-        //        {
-        //            var ident = _userManager.CreateIdentity(user,
-        //                DefaultAuthenticationTypes.ApplicationCookie);
-
-        //            authManager.SignIn(
-        //                new AuthenticationProperties { IsPersistent = false }, ident);
-        //            return Redirect(login.ReturnUrl ?? Url.Action("Index", "Home"));
-        //        }
-        //    }
-        //    ModelState.AddModelError("", "Invalid username or password");
-        //    return View(login);
-        //}
-
-        //public ActionResult CreateRole2(string roleName)
-        //{
-        //    var roleManager = HttpContext.GetOwinContext().GetUserManager<RoleManager<AppRole>>();
-
-        //    if (!roleManager.RoleExists(roleName))
-        //        roleManager.Create(new AppRole(roleName));
-        //    // rest of code
-        //}
-
         public async Task<ActionResult> Index()
         {
             var user = new AppUser { UserName = "Test", Email = "teste@test.com" };
@@ -96,12 +43,6 @@ namespace Template.Mvc.Controllers
 
         public ActionResult CreateTest()
         {
-            _userAppService.AddTwoAsync(
-                new UserViewModel
-                {
-                    Name = "Ricardo2"
-                });
-
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
