@@ -4,7 +4,7 @@ using Template.Domain.Entities;
 
 namespace Template.Data.Context
 {
-    public class ContextInitializer : DropCreateDatabaseIfModelChanges<TemplateContext>
+    public class ContextInitializer : CreateDatabaseIfNotExists<TemplateContext>
     {
         protected override void Seed(TemplateContext context)
         {
