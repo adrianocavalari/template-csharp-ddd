@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Template.Application.Interface;
 using Template.Application.ViewModels;
+using Template.Data.Repositories;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces.Repository;
 using Template.Identity.Manager;
@@ -24,7 +25,7 @@ namespace Template.Application.Service
             : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = _unitOfWork.Repository<User>() as IUserRepository;
+            _userRepository = _unitOfWork.Repository<IUserRepository>();
             _signInManager = signInManager;
             _userManager = userManager;
         }

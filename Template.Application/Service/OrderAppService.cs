@@ -14,7 +14,7 @@ namespace Template.Application.Service
             : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _orderRepository = _unitOfWork.Repository<Order>() as IOrderRepository;
+            _orderRepository = _unitOfWork.Repository<IOrderRepository>();
         }
     }
 }

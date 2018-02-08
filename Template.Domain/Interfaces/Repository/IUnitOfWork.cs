@@ -4,7 +4,7 @@ namespace Template.Domain.Interfaces.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<T> Repository<T>() where T : class;
+        TRepository Repository<TRepository>() where TRepository : class;
         void Commit();
     }
 }

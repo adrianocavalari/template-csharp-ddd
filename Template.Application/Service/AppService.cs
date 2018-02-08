@@ -16,7 +16,7 @@ namespace Template.Application.Service
         public AppService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository<TEntity>();
+            //_repository = _unitOfWork.Repository<TEntity>();
         }
 
         public void Add(TEntityViewModel entity)

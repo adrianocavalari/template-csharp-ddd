@@ -18,14 +18,14 @@ namespace Template.Data
             repositories = new Dictionary<Type, dynamic>();
         }
 
-        public IRepository<T> Repository<T>()
-            where T : class
+        public TRepository Repository<TRepository>()
+            where TRepository : class
         {
-            if (repositories.Keys.Contains(typeof(T)))
-                return repositories[typeof(T)] as IRepository<T>;
+            if (repositories.Keys.Contains(typeof(TRepository)))
+                return repositories[typeof(TRepository)];
 
-            IRepository<T> repo = new Repository<T>(_context);
-            repositories.Add(typeof(T), repo);
+            var repo = (TRepository)Activator.CreateInstance(typeof(TRepository), _context);
+            repositories.Add(typeof(TRepository), repo);
             return repo;
         }
 
