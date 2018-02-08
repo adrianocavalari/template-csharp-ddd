@@ -13,7 +13,6 @@ namespace Template.Application.Service
 {
     public class UserAppService : AppService<UserViewModel, User>, IUserAppService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
         private readonly ApplicationSignInManager _signInManager;
         private readonly ApplicationUserManager _userManager;
@@ -22,12 +21,13 @@ namespace Template.Application.Service
             IUnitOfWork unitOfWork,
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager)
-            : base(unitOfWork)
+            : base(unitOfWork.Repository<UserRepository>())
         {
-            _unitOfWork = unitOfWork;
-            _userRepository = _unitOfWork.Repository<IUserRepository>();
+            _userRepository = unitOfWork.Repository<UserRepository>();
             _signInManager = signInManager;
             _userManager = userManager;
+
+            GetAll();
         }
 
         public async Task AddUserAppAsync(UserViewModel userViewModel)
@@ -50,7 +50,7 @@ namespace Template.Application.Service
         public async Task<IEnumerable<UserViewModel>> GetByNameAsync(string name)
         {
             
-            return Mapper.Map<IEnumerable<UserViewModel>>(await _userRepository.GetByNameAsync("adriano"));
+            return Mapper.Map<IEnumerable<UserViewModel>>(await _userRepository.GetByNameAsync(name));
         }
     }
 }

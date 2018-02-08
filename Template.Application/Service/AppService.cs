@@ -10,13 +10,12 @@ namespace Template.Application.Service
         where TEntityViewModel : class
         where TEntity : class
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<TEntity> _repository;
 
-        public AppService(IUnitOfWork unitOfWork)
+        public AppService(IRepository<TEntity> repository)
         {
-            _unitOfWork = unitOfWork;
-            //_repository = _unitOfWork.Repository<TEntity>();
+            //_unitOfWork = unitOfWork;
+            _repository = repository;
         }
 
         public void Add(TEntityViewModel entity)
