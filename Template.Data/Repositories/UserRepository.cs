@@ -13,10 +13,10 @@ namespace Template.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<User>> GetByNameAsync(string name)
+        public Task<IEnumerable<User>> GetByNameAsync(string name)
         {
 
-            return await GetByAsync(g => g.Name.Equals(name, System.StringComparison.InvariantCultureIgnoreCase));
+            return GetByAsync(g => g.Name.Equals(name, System.StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

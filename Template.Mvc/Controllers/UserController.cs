@@ -22,7 +22,7 @@ namespace Template.Mvc.Controllers
                 Email = "adriano@Template.com"
             };
 
-            //await _userAppService.AddUserAppAsync(user);
+            await _userAppService.AddUserAppAsync(user);
             var all = await _userAppService.GetByNameAsync("Adriano");
 
             return View(all);

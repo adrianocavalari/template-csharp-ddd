@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -18,5 +19,7 @@ namespace Template.Domain.Interfaces.Repository
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> where);
         Task<IEnumerable<TEntity>> GetAllAsync();
+        IQueryable<TEntity> Query();
+        IQueryable<TEntityQuery> Query<TEntityQuery>() where TEntityQuery : class;
     }
 }

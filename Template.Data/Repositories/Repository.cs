@@ -65,6 +65,16 @@ namespace Template.Data.Repositories
             return await _dbSet.ToListAsync();
         }
 
+        public IQueryable<TEntity> Query()
+        {
+            return _dbSet.AsQueryable();
+        }
+
+        public IQueryable<TEntityQuery> Query<TEntityQuery>() where TEntityQuery : class
+        {
+            return _context.Set<TEntityQuery>().AsQueryable();
+        }
+
         public void Dispose()
         {
             Dispose(true);

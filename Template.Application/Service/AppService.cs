@@ -14,7 +14,6 @@ namespace Template.Application.Service
 
         public AppService(IRepository<TEntity> repository)
         {
-            //_unitOfWork = unitOfWork;
             _repository = repository;
         }
 
