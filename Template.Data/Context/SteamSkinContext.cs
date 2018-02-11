@@ -6,15 +6,15 @@ using Template.Domain.Entities;
 
 namespace Template.Data.Context
 {
-    public class TemplateContext : DbContext
+    public class SteamSkinContext : DbContext
     {
-        static TemplateContext()
+        static SteamSkinContext()
         {
             Database.SetInitializer(new ContextInitializer());
         }
 
-        public TemplateContext() :
-            base("TemplateEntity")
+        public SteamSkinContext() :
+            base("SteamSkinEntity")
         {
         }
 

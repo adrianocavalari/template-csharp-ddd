@@ -78,13 +78,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Template.Application\Template.Application.csproj">
+    <ProjectReference Include="..\Template.Application\SteamSkin.Application.csproj">
       <Project>{29694D2F-6B07-4A66-8C32-6176B42CC83A}</Project>
-      <Name>Template.Application</Name>
+      <Name>SteamSkin.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Domain\Template.Domain.csproj">
+    <ProjectReference Include="..\Template.Domain\SteamSkin.Domain.csproj">
       <Project>{B61DD930-DE09-494B-B965-3AEE3B8F88BE}</Project>
-      <Name>Template.Domain</Name>
+      <Name>SteamSkin.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

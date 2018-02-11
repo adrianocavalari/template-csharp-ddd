@@ -33,13 +33,13 @@ namespace Template.Application.Service
             GetAll();
         }
 
-        public async Task AddUserAppAsync(UserViewModel userViewModel)
+        public async Task AddUserAppAsync(UserViewModel user)
         {
-            if (userViewModel == null)
-                throw new System.ArgumentNullException(nameof(userViewModel));
+            if (user == null)
+                throw new System.ArgumentNullException(nameof(user));
 
-            Add(userViewModel);
-            Add(userViewModel);
+            Add(user);
+            Add(user);
 
             _unitOfWork.Commit();
 

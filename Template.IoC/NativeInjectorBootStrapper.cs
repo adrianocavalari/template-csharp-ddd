@@ -46,7 +46,7 @@ namespace Template.IoC
         {
             ninjectKernel.Bind<IMapper>().To<Mapper>();
             ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            ninjectKernel.Bind<DbContext>().To<TemplateContext>();
+            ninjectKernel.Bind<DbContext>().To<SteamSkinContext>();
 
             ninjectKernel.Bind<IUserAppService>().To<UserAppService>();
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
