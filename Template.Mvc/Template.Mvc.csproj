@@ -288,17 +288,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Template.Application\SteamSkin.Application.csproj">
+    <ProjectReference Include="..\Template.Application\Template.Application.csproj">
       <Project>{29694D2F-6B07-4A66-8C32-6176B42CC83A}</Project>
-      <Name>SteamSkin.Application</Name>
+      <Name>Template.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Identity\SteamSkin.Identity.csproj">
+    <ProjectReference Include="..\Template.Identity\Template.Identity.csproj">
       <Project>{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}</Project>
-      <Name>SteamSkin.Identity</Name>
+      <Name>Template.Identity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.IoC\SteamSkin.IoC.csproj">
+    <ProjectReference Include="..\Template.IoC\Template.IoC.csproj">
       <Project>{02D870C8-5E73-4375-9D05-1810C6E3B038}</Project>
-      <Name>SteamSkin.IoC</Name>
+      <Name>Template.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

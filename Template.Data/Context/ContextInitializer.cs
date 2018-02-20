@@ -4,9 +4,9 @@ using Template.Domain.Entities;
 
 namespace Template.Data.Context
 {
-    public class ContextInitializer : CreateDatabaseIfNotExists<SteamSkinContext>
+    public class ContextInitializer : CreateDatabaseIfNotExists<TemplateContext>
     {
-        protected override void Seed(SteamSkinContext context)
+        protected override void Seed(TemplateContext context)
         {
             context.User.AddRange(new List<User>
             {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Mvc", "Template.Mvc\SteamSkin.Mvc.csproj", "{3A44732D-5916-44E5-858A-916D0ECB2CD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Mvc", "Template.Mvc\Template.Mvc.csproj", "{3A44732D-5916-44E5-858A-916D0ECB2CD1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{0E453319-E694-4BEF-BF96-ED6476E784DB}"
 EndProject
@@ -20,21 +20,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Cross-Cutting", "4.2 - Cross-Cutting", "{A7C4FA4D-74D4-400B-BFBD-AF20E35C0AB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Domain", "Template.Domain\SteamSkin.Domain.csproj", "{B61DD930-DE09-494B-B965-3AEE3B8F88BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Domain", "Template.Domain\Template.Domain.csproj", "{B61DD930-DE09-494B-B965-3AEE3B8F88BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{C9947350-7ABA-455A-AAC2-184060DA91F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Data", "Template.Data\SteamSkin.Data.csproj", "{E6120EAD-E037-465C-AE22-87080D195CE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Data", "Template.Data\Template.Data.csproj", "{E6120EAD-E037-465C-AE22-87080D195CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Application", "Template.Application\SteamSkin.Application.csproj", "{29694D2F-6B07-4A66-8C32-6176B42CC83A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Application", "Template.Application\Template.Application.csproj", "{29694D2F-6B07-4A66-8C32-6176B42CC83A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.IoC", "Template.IoC\SteamSkin.IoC.csproj", "{02D870C8-5E73-4375-9D05-1810C6E3B038}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.IoC", "Template.IoC\Template.IoC.csproj", "{02D870C8-5E73-4375-9D05-1810C6E3B038}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Test", "4.3 - Test", "{56FBC25B-7041-428E-AE24-4253B4BB679B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Test", "Template.Test\SteamSkin.Test.csproj", "{CC597EE1-6A90-4482-B6F1-7012E486B01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Test", "Template.Test\Template.Test.csproj", "{CC597EE1-6A90-4482-B6F1-7012E486B01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSkin.Identity", "Template.Identity\SteamSkin.Identity.csproj", "{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Identity", "Template.Identity\Template.Identity.csproj", "{1EB6801B-8250-4B72-820E-4B7AFF0D2C41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
